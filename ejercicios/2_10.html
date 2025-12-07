@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Problema 2.10 - ¿Cuál es el mayor de tres?</title>
+  <link rel="stylesheet" href="../styles/styles_desc.css">
+  <style>
+    .diagram-container {
+      margin: 20px 0;
+    }
+    .diagram-toggle-btn {
+      background-color: #007bff;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+    .diagram-toggle-btn:hover {
+      background-color: #0056b3;
+    }
+    .diagram-image {
+      display: none;
+      max-width: 100%;
+      height: auto;
+    }
+    .diagram-image.visible {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="page-header">
+      <h1>Problema 2.10 - ¿Cuál es el mayor de tres?</h1>
+      <a href="../main_desc.html" class="back-link">← Volver al menú</a>
+    </header>
+
+    <main class="exercises-main">
+      <article class="exercise-card" aria-labelledby="PROB_2.10-title">
+        <header class="exercise-header">
+          <span class="exercise-badge">Problema 2.10</span>
+          <h2 id="PROB_2.10-title">¿Cuál es el mayor de tres?</h2>
+          
+          <p class="exercise-description">
+            Escribe un programa que pida tres números decimales (A, B y C) e imprima en pantalla cuál es el mayor o si hay números iguales que sean los mayores.
+          </p>
+        </header>
+
+        <div class="diagram-container">
+          <button class="diagram-toggle-btn" onclick="toggleDiagram(this)">Mostrar diagrama de flujo</button>
+          <img src="../imagenes/DF_Prob_2.10.png" alt="Diagrama de flujo" width="600" class="diagram-image">
+        </div>
+        
+        <div class="exercise-content">
+          <section class="exercise-main">
+            <h3>Requisitos</h3>
+            <ul>
+              <li>Pide al usuario cada uno de los tres números (A, B y C).</li>
+              <li>Usa la clase <code>Scanner</code> para leer los tres números de tipo <code>double</code>.</li>
+              <li>Compara los números para encontrar el mayor o los mayores.</li>
+              <li>Imprime el resultado usando los mensajes exactos que se ven en los ejemplos.</li>
+            </ul>
+            
+            <h3>Ejemplo de uso esperado</h3>
+            <pre><code class="code-block">Introduce el primer número (A): 10
+Introduce el segundo número (B): 5
+Introduce el tercer número (C): 0
+A es el mayor.
+
+Introduce el primer número (A): 10
+Introduce el segundo número (B): 5
+Introduce el tercer número (C): 10
+A y C son los mayores.
+
+Introduce el primer número (A): 10
+Introduce el segundo número (B): 10
+Introduce el tercer número (C): 10
+A, B y C son iguales.
+            </code></pre>
+          </section>
+          
+          <aside class="exercise-sidebar">
+            <h3>Notas para tus Pruebas</h3>
+            <p class="note-text">
+              La lógica de comparación es la clave aquí. ¡Asegúrate de que tu programa funcione para todos los casos de los ejemplos!
+            </p>
+            
+            <div class="tip-box">
+              <strong>Tip: Orden de las condiciones</strong>
+              <p>Una buena estrategia es comprobar primero el caso más simple: si los tres números son iguales (<code>a == b && b == c</code>).</p>
+              <p>Luego, puedes usar <code>else if</code> para los otros casos. Esto hace que tu código sea más ordenado y fácil de depurar.</p>
+            </div>
+          </aside>
+        </div>
+      </article>
+    </main>
+
+    <footer class="page-footer">
+      <a href="../main_desc.html">← Volver al menú principal</a>
+    </footer>
+  </div>
+
+  <script>
+    function toggleDiagram(button) {
+      const img = button.nextElementSibling;
+      img.classList.toggle('visible');
+      button.textContent = img.classList.contains('visible') ? 'Ocultar diagrama de flujo' : 'Mostrar diagrama de flujo';
+    }
+  </script>
+</body>
+</html>

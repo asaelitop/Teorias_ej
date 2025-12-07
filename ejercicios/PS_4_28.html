@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PS 4.28 - Verificador de Cuadrado Mágico</title>
+  <link rel="stylesheet" href="../styles/styles_desc.css">
+  <style>
+    .diagram-container {
+      margin: 20px 0;
+    }
+    .diagram-toggle-btn {
+      background-color: #007bff;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+    .diagram-toggle-btn:hover {
+      background-color: #0056b3;
+    }
+    .diagram-image {
+      display: none;
+      max-width: 100%;
+      height: auto;
+    }
+    .diagram-image.visible {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="page-header">
+      <h1>PS 4.28 - Verificador de Cuadrado Mágico</h1>
+      <a href="../main_desc.html" class="back-link">← Volver al menú</a>
+    </header>
+
+    <main class="exercises-main">
+      <article class="exercise-card" aria-labelledby="PS_4.28-title">
+        <header class="exercise-header">
+          <span class="exercise-badge">Problema Suplementario 4.28</span>
+          <h2 id="PS_4.28-title">Verificador de Cuadrado Mágico</h2>
+          
+          <p class="exercise-description">
+            Un "cuadrado mágico" es una matriz cuadrada donde la suma de los números de cada fila, cada columna y ambas diagonales principales es la misma. Escribe un programa que determine si una matriz ingresada por el usuario es un cuadrado mágico.
+          </p>
+        </header>
+
+        <div class="diagram-container">
+          <button class="diagram-toggle-btn" onclick="toggleDiagram(this)">Mostrar diagrama de flujo</button>
+          <img src="../imagenes/df_4_28.jpg" alt="Diagrama de flujo" width="400" class="diagram-image">
+        </div>
+
+        <div class="exercise-content">
+          <section class="exercise-main">
+            <h3>Requisitos</h3>
+            <p>Todo el código debe estar dentro del método <code>main</code>.</p>
+            <ul>
+              <li>Pide al usuario el tamaño de la matriz cuadrada (N).</li>
+              <li>Usa bucles anidados para pedir al usuario cada uno de los elementos de la matriz.</li>
+              <li>Calcula la suma de la primera fila y úsala como la "suma de referencia".</li>
+              <li>Verifica que la suma de todas las demás filas, todas las columnas y ambas diagonales sea igual a la suma de referencia.</li>
+              <li>Si todas las sumas son iguales, imprime: <code>"La matriz es un cuadrado mágico"</code>.</li>
+              <li>Si encuentras una sola suma que sea diferente, imprime: <code>"La matriz no es un cuadrado mágico"</code>.</li>
+            </ul>
+            
+            <h3>Ejemplo de uso esperado</h3>
+            <pre><code class="code-block">Introduce el tamaño de la matriz cuadrada (N): 3
+Introduce los elementos de la matriz:
+Elemento [0][0]: 8
+Elemento [0][1]: 1
+Elemento [0][2]: 6
+Elemento [1][0]: 3
+Elemento [1][1]: 5
+Elemento [1][2]: 7
+Elemento [2][0]: 4
+Elemento [2][1]: 9
+Elemento [2][2]: 2
+La matriz es un cuadrado mágico
+            </code></pre>
+          </section>
+          
+          <aside class="exercise-sidebar">
+            <h3>Concepto Clave: Matrices</h3>
+            <p class="note-text">Una matriz (o arreglo bidimensional) es como una tabla o una cuadrícula. Se declara con dos pares de corchetes: <code>int[][] matriz = new int[N][N];</code>. Para acceder a un elemento, necesitas dos índices: uno para la fila y otro para la columna (<code>matriz[fila][columna]</code>).</p>
+            
+            <div class="tip-box">
+              <strong>Tip: Usando una Bandera</strong>
+              <p>Crea una variable <code>boolean esMagico = true;</code> al principio. Dentro de tus bucles de verificación, si encuentras una suma que no coincide con la de referencia, simplemente cambia la bandera a <code>false</code>.</p>
+              <p>Al final, solo necesitas un <code>if (esMagico)</code> para decidir qué mensaje imprimir. Esto es más limpio que tener múltiples mensajes de error y salidas del programa.</p>
+            </div>
+          </aside>
+        </div>
+      </article>
+    </main>
+
+    <footer class="page-footer">
+      <a href="../main_desc.html">← Volver al menú principal</a>
+    </footer>
+  </div>
+
+  <script>
+    function toggleDiagram(button) {
+      const img = button.nextElementSibling;
+      img.classList.toggle('visible');
+      button.textContent = img.classList.contains('visible') ? 'Ocultar diagrama de flujo' : 'Mostrar diagrama de flujo';
+    }
+  </script>
+</body>
+</html>

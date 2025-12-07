@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Problema 3.7 - Clasificador de Ventas</title>
+  <link rel="stylesheet" href="../styles/styles_desc.css">
+  <style>
+    .diagram-container {
+      margin: 20px 0;
+    }
+    .diagram-toggle-btn {
+      background-color: #007bff;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+    .diagram-toggle-btn:hover {
+      background-color: #0056b3;
+    }
+    .diagram-image {
+      display: none;
+      max-width: 100%;
+      height: auto;
+    }
+    .diagram-image.visible {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="page-header">
+      <h1>Problema 3.7 - Clasificador de Ventas</h1>
+      <a href="../main_desc.html" class="back-link">← Volver al menú</a>
+    </header>
+
+    <main class="exercises-main">
+      <article class="exercise-card" aria-labelledby="PROB_3.7-title">
+        <header class="exercise-header">
+          <span class="exercise-badge">Problema 3.7</span>
+          <h2 id="PROB_3.7-title">Clasificador de Ventas</h2>
+          
+          <p class="exercise-description">
+            Escribe un programa que procese una serie de ventas. Primero, debe preguntar cuántas ventas se van a introducir. Luego, pedirá el monto de cada una y, al final, mostrará un resumen de cuántas ventas fueron chicas, medianas y grandes.
+          </p>
+        </header>
+        
+        <div class="diagram-container">
+          <button class="diagram-toggle-btn" onclick="toggleDiagram(this)">Mostrar diagrama de flujo</button>
+          <img src="../imagenes/DF_pro_3_7.jpg" alt="Diagrama de flujo" width="200" class="diagram-image">
+        </div>
+
+        <div class="exercise-content">
+          <section class="exercise-main">
+            <h3>Requisitos</h3>
+            <ul>
+              <li>Define tres contadores: <code>ventasChicas</code>, <code>ventasMedianas</code>, <code>ventasGrandes</code>.</li>
+              <li>Pide al usuario la cantidad total de ventas a procesar.</li>
+              <li>Usa un bucle <code>for</code> que se repita esa cantidad de veces.</li>
+              <li>Dentro del bucle, pide el monto de cada venta.</li>
+              <li>Clasifica cada monto y aumenta el contador correspondiente:
+                  <ul>
+                      <li><b>Chicas:</b> si el monto es menor o igual a 200.</li>
+                      <li><b>Medianas:</b> si es mayor a 200 pero menor a 400.</li>
+                      <li><b>Grandes:</b> si es mayor or igual a 400.</li>
+                  </ul>
+              </li>
+              <li>Al final del bucle, imprime el total de cada categoría.</li>
+            </ul>
+            
+            <h3>Ejemplo de uso esperado</h3>
+            <pre><code class="code-block">Introduce la cantidad de ventas a procesar: 5
+Introduce el monto de la venta #1: 150
+Introduce el monto de la venta #2: 300.50
+Introduce el monto de la venta #3: 400
+Introduce el monto de la venta #4: 199.99
+Introduce el monto de la venta #5: 550
+Resumen de ventas:
+Ventas chicas (<= 200): 2
+Ventas medianas (< 400): 1
+Ventas grandes (>= 400): 2
+            </code></pre>
+          </section>
+          
+          <aside class="exercise-sidebar">
+            <h3>Concepto Clave: Bucles</h3>
+            <p class="note-text">
+              Este ejercicio introduce los <strong>bucles</strong> (o ciclos). Un bucle <code>for</code> es perfecto para repetir una acción un número conocido de veces, como pedir el monto de cada venta.
+            </p>
+            
+            <div class="tip-box">
+              <strong>Tip: Operador de Incremento</strong>
+              <p>Dentro del bucle, para aumentar un contador, puedes usar el operador de incremento <code>++</code>.</p>
+              <p>Escribir <code>ventasChicas++;</code> es un atajo muy común para <code>ventasChicas = ventasChicas + 1;</code>. ¡Es más corto y fácil de leer!</p>
+            </div>
+          </aside>
+        </div>
+      </article>
+    </main>
+
+    <footer class="page-footer">
+      <a href="../main_desc.html">← Volver al menú principal</a>
+    </footer>
+  </div>
+
+  <script>
+    function toggleDiagram(button) {
+      const img = button.nextElementSibling;
+      img.classList.toggle('visible');
+      button.textContent = img.classList.contains('visible') ? 'Ocultar diagrama de flujo' : 'Mostrar diagrama de flujo';
+    }
+  </script>
+</body>
+</html>

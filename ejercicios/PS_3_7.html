@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PS 3.7 - Calculadora de Nómina con Aumentos por Rango</title>
+  <link rel="stylesheet" href="../styles/styles_desc.css">
+  <style>
+    .diagram-container {
+      margin: 20px 0;
+    }
+    .diagram-toggle-btn {
+      background-color: #007bff;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+    .diagram-toggle-btn:hover {
+      background-color: #0056b3;
+    }
+    .diagram-image {
+      display: none;
+      max-width: 100%;
+      height: auto;
+    }
+    .diagram-image.visible {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="page-header">
+      <h1>PS 3.7 - Calculadora de Nómina con Aumentos por Rango</h1>
+      <a href="../main_desc.html" class="back-link">← Volver al menú</a>
+    </header>
+
+    <main class="exercises-main">
+      <article class="exercise-card" aria-labelledby="PS_3.7-title">
+        <header class="exercise-header">
+          <span class="exercise-badge">Problema Suplementario 3.7</span>
+          <h2 id="PS_3.7-title">Calculadora de Nómina con Aumentos por Rango</h2>
+          
+          <p class="exercise-description">
+            Una empresa desea calcular su nómina total después de aplicar aumentos de sueldo. Los aumentos se basan en el sueldo actual del empleado: 10% si ganan menos de $10,000; 7% si ganan entre $10,000 y $25,000; y 8% si ganan más de $25,000.
+          </p>
+        </header>
+        
+        <div class="diagram-container">
+          <button class="diagram-toggle-btn" onclick="toggleDiagram(this)">Mostrar diagrama de flujo</button>
+          <img src="../imagenes/df_1_7.jpg" alt="Diagrama de flujo" width="400" class="diagram-image">
+        </div>
+
+        <div class="exercise-content">
+          <section class="exercise-main">
+            <h3>Requisitos</h3>
+            <p>Todo el código debe estar dentro del método <code>main</code>.</p>
+            <ul>
+              <li>Pide al usuario el número de empleados con: <code>"Introduce el número de empleados: "</code>.</li>
+              <li>Usa un bucle <code>for</code> para procesar cada empleado.</li>
+              <li>Dentro del bucle, pide el sueldo de cada uno con: <code>"Sueldo del empleado #[num]: "</code>.</li>
+              <li>Usa una estructura <code>if-else if-else</code> para calcular el nuevo sueldo según el rango.</li>
+              <li>Imprime el nuevo sueldo de ese empleado, formateado a dos decimales: <code>" -> Nuevo sueldo: $[sueldo]"</code>.</li>
+              <li>Mantén un acumulador para sumar todos los nuevos sueldos.</li>
+              <li>Al final del bucle, imprime la nómina total con: <code>"El total de la nueva nómina es: $[total]"</code>.</li>
+            </ul>
+            
+            <h3>Ejemplo de uso esperado</h3>
+            <pre><code class="code-block">Introduce el número de empleados: 3
+Sueldo del empleado #1: 5000
+ -> Nuevo sueldo: $5500.00
+Sueldo del empleado #2: 20000
+ -> Nuevo sueldo: $21400.00
+Sueldo del empleado #3: 30000
+ -> Nuevo sueldo: $32400.00
+
+El total de la nueva nómina es: $59300.00
+            </code></pre>
+          </section>
+          
+          <aside class="exercise-sidebar">
+            <h3>Rangos y Condiciones</h3>
+            <p class="note-text">Presta atención a los límites de los rangos. El rango intermedio incluye el 10,000 y el 25,000 (<code>sueldo <= 25000</code>).</p>
+            
+            <div class="tip-box">
+              <strong>Tip: Acumuladores</strong>
+              <p>Un "acumulador" es una variable que usas para llevar una suma continua. Declara una variable <code>double totalNomina = 0;</code> antes del bucle.</p>
+              <p>Dentro del bucle, después de calcular cada <code>nuevoSueldo</code>, simplemente añádelo al total con <code>totalNomina += nuevoSueldo;</code>.</p>
+            </div>
+          </aside>
+        </div>
+      </article>
+    </main>
+
+    <footer class="page-footer">
+      <a href="../main_desc.html">← Volver al menú principal</a>
+    </footer>
+  </div>
+
+  <script>
+    function toggleDiagram(button) {
+      const img = button.nextElementSibling;
+      img.classList.toggle('visible');
+      button.textContent = img.classList.contains('visible') ? 'Ocultar diagrama de flujo' : 'Mostrar diagrama de flujo';
+    }
+  </script>
+</body>
+</html>

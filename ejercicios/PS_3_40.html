@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PS 3.40 - Análisis de Conductividad de Elementos</title>
+  <link rel="stylesheet" href="../styles/styles_desc.css">
+  <style>
+    .diagram-container {
+      margin: 20px 0;
+    }
+    .diagram-toggle-btn {
+      background-color: #007bff;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+    .diagram-toggle-btn:hover {
+      background-color: #0056b3;
+    }
+    .diagram-image {
+      display: none;
+      max-width: 100%;
+      height: auto;
+    }
+    .diagram-image.visible {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="page-header">
+      <h1>PS 3.40 - Análisis de Conductividad de Elementos</h1>
+      <a href="../main_desc.html" class="back-link">← Volver al menú</a>
+    </header>
+
+    <main class="exercises-main">
+      <article class="exercise-card" aria-labelledby="PS_3.40-title">
+        <header class="exercise-header">
+          <span class="exercise-badge">Problema Suplementario 3.40</span>
+          <h2 id="PS_3.40-title">Análisis de Conductividad de Elementos</h2>
+          
+          <p class="exercise-description">
+            Escribe un programa que lea el nombre, la conductividad eléctrica y la conductividad térmica de varios elementos. El programa debe detenerse cuando el usuario ingrese "NN" como nombre. Al final, debe reportar cuál es el mejor y peor conductor eléctrico, y el mejor y peor conductor térmico.
+          </p>
+        </header>
+        
+        <div class="diagram-container">
+          <button class="diagram-toggle-btn" onclick="toggleDiagram(this)">Mostrar diagrama de flujo</button>
+          <img src="../imagenes/df_3_40.jpg" alt="Diagrama de flujo" width="400" class="diagram-image">
+        </div>
+
+        <div class="exercise-content">
+          <section class="exercise-main">
+            <h3>Requisitos</h3>
+            <p>Todo el código debe estar dentro del método <code>main</code>.</p>
+            <ul>
+              <li>Usa un bucle <code>do-while</code> para pedir datos hasta que el usuario ingrese "NN".</li>
+              <li>Dentro del bucle, pide el nombre, la conductividad eléctrica y la conductividad térmica.</li>
+              <li>Guarda estos datos en tres arreglos paralelos (uno para nombres, uno para cond. eléctrica y otro para cond. térmica).</li>
+              <li>Después de que el usuario termine de ingresar datos, usa bucles <code>for</code> para encontrar los elementos con los valores máximos y mínimos para cada tipo de conductividad.</li>
+              <li>Imprime un reporte final con los resultados.</li>
+            </ul>
+            
+            <h3>Ejemplo de uso esperado</h3>
+            <pre><code class="code-block">--- Ingrese los datos de los elementos ---
+Ingrese el nombre del elemento (o 'NN' para finalizar): Plata
+Ingrese la conductividad electrica: 63.0
+Ingrese la conductividad termica: 429.0
+Ingrese el nombre del elemento (o 'NN' para finalizar): Azufre
+Ingrese la conductividad electrica: 0.1
+Ingrese la conductividad termica: 0.2
+Ingrese el nombre del elemento (o 'NN' para finalizar): NN
+
+--- Resultados del Análisis de Conductividad ---
+Mejor conductor eléctrico: Plata
+Peor conductor eléctrico: Azufre
+Mejor conductor térmico: Plata
+Peor conductor térmico: Azufre
+            </code></pre>
+          </section>
+          
+          <aside class="exercise-sidebar">
+            <h3>Concepto Clave: Arreglos Paralelos</h3>
+            <p class="note-text">Los arreglos paralelos son una técnica donde usas múltiples arreglos y el índice `i` se refiere a la misma entidad en todos ellos. Por ejemplo, `nombres[i]`, `condElectrica[i]` y `condTermica[i]` contienen toda la información del i-ésimo elemento.</p>
+            
+            <div class="tip-box">
+              <strong>Tip: Encontrando el Máximo/Mínimo</strong>
+              <p>Para encontrar el valor máximo en un arreglo, inicializa una variable `max` con el primer valor del arreglo. Luego, recorre el resto del arreglo con un bucle `for`. Si encuentras un valor mayor que `max`, actualiza `max` con ese nuevo valor. Haz lo mismo para el mínimo.</p>
+            </div>
+          </aside>
+        </div>
+      </article>
+    </main>
+
+    <footer class="page-footer">
+      <a href="../main_desc.html">← Volver al menú principal</a>
+    </footer>
+  </div>
+
+  <script>
+    function toggleDiagram(button) {
+      const img = button.nextElementSibling;
+      img.classList.toggle('visible');
+      button.textContent = img.classList.contains('visible') ? 'Ocultar diagrama de flujo' : 'Mostrar diagrama de flujo';
+    }
+  </script>
+</body>
+</html>

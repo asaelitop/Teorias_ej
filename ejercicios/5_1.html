@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ejemplo 5.1 - Creando tu Primera Clase: Alumno</title>
+  <link rel="stylesheet" href="../styles/styles_desc.css">
+  <style>
+    .diagram-container {
+      margin: 20px 0;
+    }
+    .diagram-toggle-btn {
+      background-color: #007bff;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+    .diagram-toggle-btn:hover {
+      background-color: #0056b3;
+    }
+    .diagram-image {
+      display: none;
+      max-width: 100%;
+      height: auto;
+    }
+    .diagram-image.visible {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="page-header">
+      <h1>Ejemplo 5.1 - Creando tu Primera Clase: Alumno</h1>
+      <a href="../main_desc.html" class="back-link">← Volver al menú</a>
+    </header>
+
+    <main class="exercises-main">
+      <article class="exercise-card" aria-labelledby="EJ_5.1-title">
+        <header class="exercise-header">
+          <span class="exercise-badge">Ejemplo 5.1</span>
+          <h2 id="EJ_5.1-title">Creando tu Primera Clase: Alumno</h2>
+          
+          <p class="exercise-description">
+            En este ejercicio, crearás una "plantilla" (una clase) para representar a un Alumno. Luego, tu programa pedirá los datos de un alumno al usuario y los usará para crear un "objeto" Alumno.
+          </p>
+        </header>
+        
+        <div class="diagram-container">
+          <button class="diagram-toggle-btn" onclick="toggleDiagram(this)">Mostrar diagrama de flujo</button>
+          <img src="../imagenes/df_5_1.png" alt="Diagrama de flujo" width="200" class="diagram-image">
+        </div>
+
+        <div class="exercise-content">
+          <section class="exercise-main">
+            <h3>Requisitos</h3>
+            <p>El programa se divide en dos partes: la **clase** y el **método `main`**.</p>
+            <h5>Parte 1: La Clase `P14_7_ej_5_1`</h5>
+            <ul>
+              <li>Debe tener atributos privados: <code>nombre</code>, <code>direccion</code>, <code>carrera</code> (String) y <code>matricula</code> (int).</li>
+              <li>Debe tener un **constructor** que reciba y asigne todos estos atributos.</li>
+              <li>Debe tener métodos `get` y `set` para cada uno de los atributos.</li>
+            </ul>
+            <h5>Parte 2: El Método `main`</h5>
+            <ul>
+              <li>Pide al usuario los datos de un alumno (nombre, dirección, carrera y matrícula).</li>
+              <li>Crea un nuevo objeto de la clase `P14_7_ej_5_1` usando los datos introducidos.</li>
+              <li>Imprime un reporte final con los datos del objeto creado.</li>
+            </ul>
+            
+            <h3>Ejemplo de uso esperado</h3>
+            <pre><code class="code-block">Introduce el nombre del alumno: Juan Perez
+Introduce la dirección: Avenida Siempre Viva 742
+Introduce la carrera: Sistemas Computacionales
+Introduce la matrícula: 123456
+
+--- Datos del Alumno Registrado ---
+Nombre: Juan Perez
+Matrícula: 123456
+Dirección: Avenida Siempre Viva 742
+Carrera: Sistemas Computacionales
+            </code></pre>
+          </section>
+          
+          <aside class="exercise-sidebar">
+            <h3>Concepto Clave: Clases y Objetos</h3>
+            <p class="note-text">Una <strong>clase</strong> es como un plano o un molde. Define las propiedades (atributos) y los comportamientos (métodos) que algo tendrá. Un <strong>objeto</strong> es una instancia de esa clase, es decir, una "cosa" real creada a partir de ese molde.</p>
+            
+            <div class="tip-box">
+              <strong>Tip: El Constructor</strong>
+              <p>El constructor es un método especial que se llama automáticamente cuando creas un nuevo objeto (<code>new P14_7_ej_5_1(...)</code>). Su trabajo es inicializar los atributos del objeto con los valores que le pasas.</p>
+            </div>
+          </aside>
+        </div>
+      </article>
+    </main>
+
+    <footer class="page-footer">
+      <a href="../main_desc.html">← Volver al menú principal</a>
+    </footer>
+  </div>
+
+  <script>
+    function toggleDiagram(button) {
+      const img = button.nextElementSibling;
+      img.classList.toggle('visible');
+      button.textContent = img.classList.contains('visible') ? 'Ocultar diagrama de flujo' : 'Mostrar diagrama de flujo';
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PS 3.6 - Aumento de Sueldo Condicional</title>
+  <link rel="stylesheet" href="../styles/styles_desc.css">
+  <style>
+    .diagram-container {
+      margin: 20px 0;
+    }
+    .diagram-toggle-btn {
+      background-color: #007bff;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+    .diagram-toggle-btn:hover {
+      background-color: #0056b3;
+    }
+    .diagram-image {
+      display: none;
+      max-width: 100%;
+      height: auto;
+    }
+    .diagram-image.visible {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="page-header">
+      <h1>PS 3.6 - Aumento de Sueldo Condicional</h1>
+      <a href="../main_desc.html" class="back-link">← Volver al menú</a>
+    </header>
+
+    <main class="exercises-main">
+      <article class="exercise-card" aria-labelledby="PS_3.6-title">
+        <header class="exercise-header">
+          <span class="exercise-badge">Problema Suplementario 3.6</span>
+          <h2 id="PS_3.6-title">Aumento de Sueldo Condicional</h2>
+          
+          <p class="exercise-description">
+            Una empresa aplica un aumento de sueldo del 15% a todos sus trabajadores cuyo sueldo actual es inferior a $800. Escribe un programa que pida los sueldos de N trabajadores y muestre el nuevo sueldo de cada uno.
+          </p>
+        </header>
+        
+        <div class="diagram-container">
+          <button class="diagram-toggle-btn" onclick="toggleDiagram(this)">Mostrar diagrama de flujo</button>
+          <img src="../imagenes/df_3_6.jpg" alt="Diagrama de flujo" width="300" class="diagram-image">
+        </div>
+
+        <div class="exercise-content">
+          <section class="exercise-main">
+            <h3>Requisitos</h3>
+            <p>Todo el código debe estar dentro del método <code>main</code>.</p>
+            <ul>
+              <li>Pide al usuario el número de empleados con: <code>"Introduce el número de empleados: "</code>.</li>
+              <li>Usa un bucle <code>for</code> para procesar cada empleado.</li>
+              <li>Dentro del bucle, pide el sueldo de cada uno con: <code>"Sueldo del empleado #[num]: "</code>.</li>
+              <li>Si el sueldo es menor a 800, aplícale un aumento del 15% (<code>sueldo * 1.15</code>).</li>
+              <li>Imprime inmediatamente el nuevo sueldo de ese empleado, formateado a dos decimales, con el texto: <code>" -> Nuevo sueldo: $[sueldo]"</code>.</li>
+            </ul>
+            
+            <h3>Ejemplo de uso esperado</h3>
+            <pre><code class="code-block">Introduce el número de empleados: 3
+--- Introduce los sueldos ---
+Sueldo del empleado #1: 500
+ -> Nuevo sueldo: $575.00
+Sueldo del empleado #2: 800
+ -> Nuevo sueldo: $800.00
+Sueldo del empleado #3: 1000
+ -> Nuevo sueldo: $1000.00
+            </code></pre>
+          </section>
+          
+          <aside class="exercise-sidebar">
+            <h3>Condición Clave</h3>
+            <p class="note-text">La condición para el aumento es estricta: <code>sueldo < 800</code>. Esto significa que un sueldo de exactamente 800.00 no recibe aumento.</p>
+            
+            <div class="tip-box">
+              <strong>Tip: Usando <code>printf</code></strong>
+              <p>Para mostrar el sueldo con formato de moneda (dos decimales), es ideal usar <code>System.out.printf()</code>.</p>
+              <p>Ejemplo: <code>System.out.printf(" -> Nuevo sueldo: $%.2f\n", nuevoSueldo);</code></p>
+              <p>El <code>\n</code> al final asegura que la siguiente petición de sueldo aparezca en una nueva línea.</p>
+            </div>
+          </aside>
+        </div>
+      </article>
+    </main>
+
+    <footer class="page-footer">
+      <a href="../main_desc.html">← Volver al menú principal</a>
+    </footer>
+  </div>
+
+  <script>
+    function toggleDiagram(button) {
+      const img = button.nextElementSibling;
+      img.classList.toggle('visible');
+      button.textContent = img.classList.contains('visible') ? 'Ocultar diagrama de flujo' : 'Mostrar diagrama de flujo';
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ejemplo 4.4.5 - Modificar Elemento (Arreglo Desordenado)</title>
+  <link rel="stylesheet" href="../styles/styles_desc.css">
+  <style>
+    .diagram-container {
+      margin: 20px 0;
+    }
+    .diagram-toggle-btn {
+      background-color: #007bff;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+    .diagram-toggle-btn:hover {
+      background-color: #0056b3;
+    }
+    .diagram-image {
+      display: none;
+      max-width: 100%;
+      height: auto;
+    }
+    .diagram-image.visible {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="page-header">
+      <h1>Ejemplo 4.4.5 - Modificar Elemento (Arreglo Desordenado)</h1>
+      <a href="../main_desc.html" class="back-link">← Volver al menú</a>
+    </header>
+
+    <main class="exercises-main">
+      <article class="exercise-card" aria-labelledby="EJ_4.4.5-title">
+        <header class="exercise-header">
+          <span class="exercise-badge">Ejemplo 4.4.5</span>
+          <h2 id="EJ_4.4.5-title">Modificar Elemento (Arreglo Desordenado)</h2>
+          
+          <p class="exercise-description">
+            Escribe un programa que pida al usuario una lista de números, un valor a buscar dentro de la lista y un nuevo valor para reemplazarlo.
+          </p>
+        </header>
+        
+        <div class="diagram-container">
+          <button class="diagram-toggle-btn" onclick="toggleDiagram(this)">Mostrar diagrama de flujo</button>
+          <img src="../imagenes/df_4_4_5.jpg" alt="Diagrama de flujo" width="300" class="diagram-image">
+        </div>
+
+        <div class="exercise-content">
+          <section class="exercise-main">
+            <h3>Requisitos</h3>
+            <p>Todo el código debe estar dentro del método <code>main</code>.</p>
+            <ul>
+              <li>Pide el tamaño del arreglo con: <code>"Ingrese el tamaño del arreglo (N): "</code>.</li>
+              <li>Pide los elementos del arreglo con: <code>"Ingrese los [n] elementos del arreglo:"</code>.</li>
+              <li>Pide el elemento a modificar con: <code>"Ingrese el elemento a modificar (X): "</code>.</li>
+              <li>Pide el nuevo valor con: <code>"Ingrese el nuevo valor (Y): "</code>.</li>
+              <li>Busca la <strong>primera aparición</strong> del elemento a modificar y reemplázalo por el nuevo valor.</li>
+              <li>Si la modificación es exitosa, muestra: <code>"Arreglo modificado:"</code> seguido del nuevo arreglo.</li>
+              <li>Si el elemento a modificar no se encuentra, muestra: <code>"El elemento [X] no está en el arreglo."</code>.</li>
+              <li>Si el tamaño inicial del arreglo es 0, muestra: <code>"El arreglo está vacío."</code>.</li>
+            </ul>
+            
+            <h3>Ejemplo de uso esperado</h3>
+            <pre><code class="code-block">Ingrese el tamaño del arreglo (N): 5
+Ingrese los 5 elementos del arreglo:
+10
+20
+30
+40
+50
+Ingrese el elemento a modificar (X): 30
+Ingrese el nuevo valor (Y): 99
+Arreglo modificado:
+10 20 99 40 50 
+
+Ingrese el tamaño del arreglo (N): 3
+Ingrese los 3 elementos del arreglo:
+1
+2
+3
+Ingrese el elemento a modificar (X): 99
+Ingrese el nuevo valor (Y): 100
+El elemento 99 no está en el arreglo.
+            </code></pre>
+          </section>
+          
+          <aside class="exercise-sidebar">
+            <h3>Concepto Clave: Banderas (Flags)</h3>
+            <p class="note-text">Una "bandera" (o <em>flag</em>) es una variable, usualmente de tipo booleano (<code>true/false</code>), que usas para señalar que un evento ha ocurrido. Es muy útil para controlar el flujo de tu programa.</p>
+            
+            <div class="tip-box">
+              <strong>Tip: Usando una Bandera</strong>
+              <p>Crea una variable <code>boolean encontrado = false;</code>. Cuando encuentres el número que buscas, cámbiala a <code>true</code>.</p>
+              <p>Puedes usar esta bandera para dos cosas: 1) para detener el bucle de búsqueda una vez que ya encontraste el elemento, y 2) para decidir al final si imprimes el arreglo modificado o el mensaje de "no encontrado".</p>
+            </div>
+          </aside>
+        </div>
+      </article>
+    </main>
+
+    <footer class="page-footer">
+      <a href="../main_desc.html">← Volver al menú principal</a>
+    </footer>
+  </div>
+
+  <script>
+    function toggleDiagram(button) {
+      const img = button.nextElementSibling;
+      img.classList.toggle('visible');
+      button.textContent = img.classList.contains('visible') ? 'Ocultar diagrama de flujo' : 'Mostrar diagrama de flujo';
+    }
+  </script>
+</body>
+</html>

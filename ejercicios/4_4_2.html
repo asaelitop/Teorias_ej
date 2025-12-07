@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ejemplo 4.4.2 - Eliminar Elemento (Arreglo Ordenado)</title>
+  <link rel="stylesheet" href="../styles/styles_desc.css">
+  <style>
+    .diagram-container {
+      margin: 20px 0;
+    }
+    .diagram-toggle-btn {
+      background-color: #007bff;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+    .diagram-toggle-btn:hover {
+      background-color: #0056b3;
+    }
+    .diagram-image {
+      display: none;
+      max-width: 100%;
+      height: auto;
+    }
+    .diagram-image.visible {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="page-header">
+      <h1>Ejemplo 4.4.2 - Eliminar Elemento (Arreglo Ordenado)</h1>
+      <a href="../main_desc.html" class="back-link">← Volver al menú</a>
+    </header>
+
+    <main class="exercises-main">
+      <article class="exercise-card" aria-labelledby="Ej_4.4.2-title">
+        <header class="exercise-header">
+          <span class="exercise-badge">Ejemplo 4.4.2</span>
+          <h2 id="Ej_4.4.2-title">Eliminar Elemento (Arreglo Ordenado)</h2>
+          
+          <p class="exercise-description">
+            Escribe un programa que elimine un elemento de un <strong>arreglo que ya está ordenado</strong>. Para hacerlo más eficiente, deberás usar el algoritmo de búsqueda binaria.
+          </p>
+        </header>
+        
+        <div class="diagram-container">
+          <button class="diagram-toggle-btn" onclick="toggleDiagram(this)">Mostrar diagrama de flujo</button>
+          <img src="../imagenes/df_4_4_2.jpg" alt="Diagrama de flujo" width="300" class="diagram-image">
+        </div>
+
+        <div class="exercise-content">
+          <section class="exercise-main">
+            <h3>Requisitos</h3>
+            <p>Todo el código debe estar dentro del método <code>main</code>.</p>
+            <ul>
+              <li>Pide el tamaño del arreglo con: <code>"Ingrese el tamaño del arreglo (N): "</code>.</li>
+              <li>Pide los elementos con: <code>"Ingrese los [n] elementos del arreglo (deben estar ordenados):"</code>.</li>
+              <li>Pide el elemento a eliminar con: <code>"Ingrese el elemento a eliminar (X): "</code>.</li>
+              <li>Usa <strong>búsqueda binaria</strong> para encontrar la posición del elemento.</li>
+              <li>Si lo encuentras, elimínalo y muestra: <code>"Elemento eliminado. Arreglo resultante:"</code>.</li>
+              <li>Si no lo encuentras, muestra: <code>"Elemento no encontrado. El arreglo no ha cambiado:"</code>.</li>
+              <li>Al final, imprime el arreglo resultante en una sola línea, con elementos separados por espacios.</li>
+            </ul>
+            
+            <h3>Ejemplo de uso esperado</h3>
+            <pre><code class="code-block">Ingrese el tamaño del arreglo (N): 5
+Ingrese los 5 elementos del arreglo (deben estar ordenados):
+10
+20
+30
+40
+50
+Ingrese el elemento a eliminar (X): 30
+Elemento eliminado. Arreglo resultante:
+10 20 40 50 
+
+Ingrese el tamaño del arreglo (N): 4
+Ingrese los 4 elementos del arreglo (deben estar ordenados):
+10
+20
+40
+50
+Ingrese el elemento a eliminar (X): 30
+Elemento no encontrado. El arreglo no ha cambiado:
+10 20 40 50 
+            </code></pre>
+          </section>
+          
+          <aside class="exercise-sidebar">
+            <h3>Concepto Clave: Búsqueda Binaria</h3>
+            <p class="note-text">La búsqueda binaria es un algoritmo muy rápido para encontrar un elemento en un arreglo <strong>ordenado</strong>. Funciona dividiendo repetidamente el arreglo a la mitad hasta encontrar el elemento o determinar que no existe.</p>
+            
+            <div class="tip-box">
+              <strong>Tip para la Búsqueda Binaria</strong>
+              <p>Necesitarás tres variables: <code>bajo</code> (inicio), <code>alto</code> (fin) y <code>central</code>. En cada paso del bucle, calculas <code>central = (bajo + alto) / 2</code> y comparas el valor en esa posición con el que buscas. Si es mayor, ajustas <code>alto</code>; si es menor, ajustas <code>bajo</code>.</p>
+            </div>
+          </aside>
+        </div>
+      </article>
+    </main>
+
+    <footer class="page-footer">
+      <a href="../main_desc.html">← Volver al menú principal</a>
+    </footer>
+  </div>
+
+  <script>
+    function toggleDiagram(button) {
+      const img = button.nextElementSibling;
+      img.classList.toggle('visible');
+      button.textContent = img.classList.contains('visible') ? 'Ocultar diagrama de flujo' : 'Mostrar diagrama de flujo';
+    }
+  </script>
+</body>
+</html>

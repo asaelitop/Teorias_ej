@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PS 4.12 - Análisis de Ventas de Fábrica</title>
+  <link rel="stylesheet" href="../styles/styles_desc.css">
+  <style>
+    .diagram-container {
+      margin: 20px 0;
+    }
+    .diagram-toggle-btn {
+      background-color: #007bff;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+    .diagram-toggle-btn:hover {
+      background-color: #0056b3;
+    }
+    .diagram-image {
+      display: none;
+      max-width: 100%;
+      height: auto;
+    }
+    .diagram-image.visible {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="page-header">
+      <h1>PS 4.12 - Análisis de Ventas de Fábrica</h1>
+      <a href="../main_desc.html" class="back-link">← Volver al menú</a>
+    </header>
+
+    <main class="exercises-main">
+      <article class="exercise-card" aria-labelledby="PS_4.12-title">
+        <header class="exercise-header">
+          <span class="exercise-badge">Problema Suplementario 4.12</span>
+          <h2 id="PS_4.12-title">Análisis de Ventas de Fábrica</h2>
+          
+          <p class="exercise-description">
+            Una fábrica produce 8 modelos de productos. Se te pide escribir un programa que analice los registros de ventas para generar un reporte. El programa debe calcular el total recaudado por cada modelo, el total recaudado por día, y encontrar el modelo que generó más ingresos.
+          </p>
+        </header>
+        
+        <div class="diagram-container">
+          <button class="diagram-toggle-btn" onclick="toggleDiagram(this)">Mostrar diagrama de flujo</button>
+          <img src="../imagenes/df_4_12.jpg" alt="Diagrama de flujo" width="400" class="diagram-image">
+        </div>
+
+        <div class="exercise-content">
+          <section class="exercise-main">
+            <h3>Requisitos</h3>
+            <p>Todo el código debe estar dentro del método <code>main</code>.</p>
+            <ul>
+              <li>Usa un arreglo predefinido para los precios de los 8 modelos: <code>{ 10.0, 15.0, 12.5, 8.75, 9.5, 11.25, 14.0, 13.5 }</code>.</li>
+              <li>Pide al usuario el número de registros de venta a procesar.</li>
+              <li>Usa un bucle para leer cada registro. Cada registro consiste en tres números: <strong>Día</strong>, <strong>Modelo</strong> (1-8), y <strong>Cantidad</strong>.</li>
+              <li>Calcula el total recaudado para cada uno de los 8 modelos.</li>
+              <li>Calcula el total recaudado para cada día (asume un máximo de 30 días).</li>
+              <li>Encuentra cuál de los 8 modelos generó la mayor cantidad de ingresos en total.</li>
+              <li>Imprime un reporte final con todos los resultados.</li>
+            </ul>
+            
+            <h3>Ejemplo de uso esperado</h3>
+            <pre><code class="code-block">Introduce el número de registros de venta a procesar: 4
+--- Introduce los datos de cada venta (Día Modelo Cantidad) ---
+Registro #1: 1 1 10
+Registro #2: 1 2 5
+Registro #3: 2 1 2
+Registro #4: 2 3 8
+
+--- Reporte de Ventas ---
+Total recaudado por modelo:
+Modelo 1: $120.00
+Modelo 2: $75.00
+Modelo 3: $100.00
+... (los demás modelos en $0.00)
+
+Total recaudado por día:
+Día 1: $175.00
+Día 2: $120.00
+
+El modelo que más dinero produjo fue el modelo 1
+            </code></pre>
+          </section>
+          
+          <aside class="exercise-sidebar">
+            <h3>Concepto Clave: Índices de Arreglos</h3>
+            <p class="note-text">Recuerda que los arreglos en Java empiezan en el índice 0. Si el usuario introduce "Modelo 1", deberás acceder al índice 0 de tus arreglos (<code>precios[0]</code>, <code>recaudadoPorModelo[0]</code>). Siempre tendrás que restar 1 al número de modelo y al día para usarlos como índice.</p>
+            
+            <div class="tip-box">
+              <strong>Tip: Múltiples Arreglos de Totales</strong>
+              <p>Necesitarás un arreglo para acumular los totales por modelo (<code>double[] recaudadoPorModelo</code>) y otro para los totales por día (<code>double[] recaudadoPorDia</code>). A medida que procesas cada venta, actualizarás una posición en cada uno de estos arreglos.</p>
+            </div>
+          </aside>
+        </div>
+      </article>
+    </main>
+
+    <footer class="page-footer">
+      <a href="../main_desc.html">← Volver al menú principal</a>
+    </footer>
+  </div>
+
+  <script>
+    function toggleDiagram(button) {
+      const img = button.nextElementSibling;
+      img.classList.toggle('visible');
+      button.textContent = img.classList.contains('visible') ? 'Ocultar diagrama de flujo' : 'Mostrar diagrama de flujo';
+    }
+  </script>
+</body>
+</html>
