@@ -25,8 +25,14 @@
         </header>
         
         <div class="diagram-container">
-          <button class="diagram-toggle-btn" onclick="toggleDiagram(this)">Mostrar diagrama de flujo</button>
-          <img src="../imagenes/P14_2_ej_2_6codediagram.png" alt="Diagrama de flujo" width="400" class="diagram-image">
+          <button class="diagram-toggle-btn" onclick="openDiagramModal(event, '../imagenes/P14_2_ej_2_6codediagram.png')">Mostrar diagrama de flujo</button>
+        </div>
+
+        <div id="diagramModal" class="diagram-modal">
+          <div class="diagram-modal-content">
+            <button class="diagram-modal-close" onclick="closeDiagramModal()">&times;</button>
+            <img id="diagramImage" src="" alt="Diagrama de flujo" class="diagram-modal-image">
+          </div>
         </div>
 
         <div class="exercise-content">
@@ -76,10 +82,26 @@ Realizando acción X
   </div>
 
   <script>
-    function toggleDiagram(button) {
-      const img = button.nextElementSibling;
-      img.classList.toggle('visible');
-      button.textContent = img.classList.contains('visible') ? 'Ocultar diagrama de flujo' : 'Mostrar diagrama de flujo';
+    function openDiagramModal(event, imagePath) {
+      event.preventDefault();
+      const modal = document.getElementById('diagramModal');
+      const image = document.getElementById('diagramImage');
+      image.src = imagePath;
+      modal.classList.add('visible');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeDiagramModal() {
+      const modal = document.getElementById('diagramModal');
+      modal.classList.remove('visible');
+      document.body.style.overflow = 'auto';
+    }
+
+    window.onclick = function(event) {
+      const modal = document.getElementById('diagramModal');
+      if (event.target === modal) {
+        closeDiagramModal();
+      }
     }
   </script>
 </body>
