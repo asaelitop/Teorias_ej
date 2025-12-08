@@ -1,0 +1,183 @@
+digraph P14_3_pro_2_10_Flowchart {
+    rankdir=TB;
+    node [fontname="Helvetica", fontsize=10];
+    edge [fontname="Helvetica", fontsize=9];
+
+    /* Inicio / Fin */
+    start [shape=oval, style=filled, fillcolor=lightgrey, label="INICIO"];
+    end [shape=oval, style=filled, fillcolor=lightgrey, label="FIN"];
+
+    /* Procesos */
+    declare_vars [shape=box, style=filled, fillcolor=lightblue, label="DECLARAR:\na, b, c (double)"];
+    close_scanner [shape=box, style=filled, fillcolor=lightblue, label="Cerrar Scanner"];
+
+    /* Entrada / Salida */
+    prompt_a [shape=parallelogram, style=filled, fillcolor=lightgoldenrod1, label="IMPRIMIR \"Introduce el primer número (A): \""];
+    read_a [shape=parallelogram, style=filled, fillcolor=lightgoldenrod1, label="LEER a"];
+    prompt_b [shape=parallelogram, style=filled, fillcolor=lightgoldenrod1, label="IMPRIMIR \"Introduce el segundo número (B): \""];
+    read_b [shape=parallelogram, style=filled, fillcolor=lightgoldenrod1, label="LEER b"];
+    prompt_c [shape=parallelogram, style=filled, fillcolor=lightgoldenrod1, label="IMPRIMIR \"Introduce el tercer número (C): \""];
+    read_c [shape=parallelogram, style=filled, fillcolor=lightgoldenrod1, label="LEER c"];
+
+    /* Salidas (IMPRIMIR) */
+    print_a_mayor [shape=parallelogram, style=filled, fillcolor=lightcyan, label="IMPRIMIR \"A es el mayor.\""];
+    print_b_mayor [shape=parallelogram, style=filled, fillcolor=lightcyan, label="IMPRIMIR \"B es el mayor.\""];
+    print_c_mayor [shape=parallelogram, style=filled, fillcolor=lightcyan, label="IMPRIMIR \"C es el mayor.\""];
+    print_ab_mayores [shape=parallelogram, style=filled, fillcolor=lightcyan, label="IMPRIMIR \"A y B son los mayores.\""];
+    print_ac_mayores [shape=parallelogram, style=filled, fillcolor=lightcyan, label="IMPRIMIR \"A y C son los mayores.\""];
+    print_bc_mayores [shape=parallelogram, style=filled, fillcolor=lightcyan, label="IMPRIMIR \"B y C son los mayores.\""];
+    print_abc_iguales [shape=parallelogram, style=filled, fillcolor=lightcyan, label="IMPRIMIR \"A, B y C son iguales.\""];
+
+    /* Decisiones */
+    d1 [shape=diamond, style=filled, fillcolor=khaki, label="a > b\n&& a > c"];
+    d2 [shape=diamond, style=filled, fillcolor=khaki, label="b > a\n&& b > c"];
+    d3 [shape=diamond, style=filled, fillcolor=khaki, label="c > a\n&& c > b"];
+    d4 [shape=diamond, style=filled, fillcolor=khaki, label="a == b\n&& a > c"];
+    d5 [shape=diamond, style=filled, fillcolor=khaki, label="a == c\n&& a > b"];
+    d6 [shape=diamond, style=filled, fillcolor=khaki, label="b == c\n&& b > a"];
+
+    /* Flujo */
+    start -> declare_vars -> prompt_a -> read_a -> prompt_b -> read_b -> prompt_c -> read_c -> d1;
+
+    d1 -> print_a_mayor [label="Sí"];
+    d1 -> d2 [label="No"];
+    d2 -> print_b_mayor [label="Sí"];
+    d2 -> d3 [label="No"];
+    d3 -> print_c_mayor [label="Sí"];
+    d3 -> d4 [label="No"];
+    d4 -> print_ab_mayores [label="Sí"];
+    d4 -> d5 [label="No"];
+    d5 -> print_ac_mayores [label="Sí"];
+    d5 -> d6 [label="No"];
+    d6 -> print_bc_mayores [label="Sí"];
+    d6 -> print_abc_iguales [label="No"];
+
+    print_a_mayor -> close_scanner;
+    print_b_mayor -> close_scanner;
+    print_c_mayor -> close_scanner;
+    print_ab_mayores -> close_scanner;
+    print_ac_mayores -> close_scanner;
+    print_bc_mayores -> close_scanner;
+    print_abc_iguales -> close_scanner;
+    close_scanner -> end;
+}
+    // -> close_scanner -> end;
+    Decision -> close_scanner -> end;
+    d1 -> close_scanner -> end;
+    [label="a -> close_scanner -> end;
+    > -> close_scanner -> end;
+    b\n&& -> close_scanner -> end;
+    a -> close_scanner -> end;
+    > -> close_scanner -> end;
+    c"]; -> close_scanner -> end;
+    d2 -> close_scanner -> end;
+    [label="b -> close_scanner -> end;
+    > -> close_scanner -> end;
+    a\n&& -> close_scanner -> end;
+    b -> close_scanner -> end;
+    > -> close_scanner -> end;
+    c"]; -> close_scanner -> end;
+    d3 -> close_scanner -> end;
+    [label="c -> close_scanner -> end;
+    > -> close_scanner -> end;
+    a\n&& -> close_scanner -> end;
+    c -> close_scanner -> end;
+    > -> close_scanner -> end;
+    b"]; -> close_scanner -> end;
+    d4 -> close_scanner -> end;
+    [label="a -> close_scanner -> end;
+    == -> close_scanner -> end;
+    b\n&& -> close_scanner -> end;
+    a -> close_scanner -> end;
+    > -> close_scanner -> end;
+    c"]; -> close_scanner -> end;
+    d5 -> close_scanner -> end;
+    [label="a -> close_scanner -> end;
+    == -> close_scanner -> end;
+    c\n&& -> close_scanner -> end;
+    a -> close_scanner -> end;
+    > -> close_scanner -> end;
+    b"]; -> close_scanner -> end;
+    d6 -> close_scanner -> end;
+    [label="b -> close_scanner -> end;
+    == -> close_scanner -> end;
+    c\n&& -> close_scanner -> end;
+    b -> close_scanner -> end;
+    > -> close_scanner -> end;
+    a"]; -> close_scanner -> end;
+    // -> close_scanner -> end;
+    Conexiones -> close_scanner -> end;
+    (flujo) -> close_scanner -> end;
+    start -> close_scanner -> end;
+    -> -> close_scanner -> end;
+    declare_vars -> close_scanner -> end;
+    -> -> close_scanner -> end;
+    prompt_a -> close_scanner -> end;
+    -> -> close_scanner -> end;
+    read_a -> close_scanner -> end;
+    -> -> close_scanner -> end;
+    prompt_b -> close_scanner -> end;
+    -> -> close_scanner -> end;
+    read_b -> close_scanner -> end;
+    -> -> close_scanner -> end;
+    prompt_c -> close_scanner -> end;
+    -> -> close_scanner -> end;
+    read_c -> close_scanner -> end;
+    -> -> close_scanner -> end;
+    d1; -> close_scanner -> end;
+    d1 -> close_scanner -> end;
+    -> -> close_scanner -> end;
+    print_a_mayor -> close_scanner -> end;
+    [label="Si"]; -> close_scanner -> end;
+    d1 -> close_scanner -> end;
+    -> -> close_scanner -> end;
+    d2 -> close_scanner -> end;
+    [label="No"]; -> close_scanner -> end;
+    d2 -> close_scanner -> end;
+    -> -> close_scanner -> end;
+    print_b_mayor -> close_scanner -> end;
+    [label="Si"]; -> close_scanner -> end;
+    d2 -> close_scanner -> end;
+    -> -> close_scanner -> end;
+    d3 -> close_scanner -> end;
+    [label="No"]; -> close_scanner -> end;
+    d3 -> close_scanner -> end;
+    -> -> close_scanner -> end;
+    print_c_mayor -> close_scanner -> end;
+    [label="Si"]; -> close_scanner -> end;
+    d3 -> close_scanner -> end;
+    -> -> close_scanner -> end;
+    d4 -> close_scanner -> end;
+    [label="No"]; -> close_scanner -> end;
+    d4 -> close_scanner -> end;
+    -> -> close_scanner -> end;
+    print_ab_mayores -> close_scanner -> end;
+    [label="Si"]; -> close_scanner -> end;
+    d4 -> close_scanner -> end;
+    -> -> close_scanner -> end;
+    d5 -> close_scanner -> end;
+    [label="No"]; -> close_scanner -> end;
+    d5 -> close_scanner -> end;
+    -> -> close_scanner -> end;
+    print_ac_mayores -> close_scanner -> end;
+    [label="Si"]; -> close_scanner -> end;
+    d5 -> close_scanner -> end;
+    -> -> close_scanner -> end;
+    d6 -> close_scanner -> end;
+    [label="No"]; -> close_scanner -> end;
+    d6 -> close_scanner -> end;
+    -> -> close_scanner -> end;
+    print_bc_mayores -> close_scanner -> end;
+    [label="Si"]; -> close_scanner -> end;
+    d6 -> close_scanner -> end;
+    -> -> close_scanner -> end;
+    print_abc_iguales -> close_scanner -> end;
+    [label="No"]; -> close_scanner -> end;
+    {print_a_mayor -> close_scanner -> end;
+    print_b_mayor -> close_scanner -> end;
+    print_c_mayor -> close_scanner -> end;
+    print_ab_mayores -> close_scanner -> end;
+    print_ac_mayores -> close_scanner -> end;
+    print_bc_mayores -> close_scanner -> end;
+    print_abc_iguales -> close_scanner -> end;
+}

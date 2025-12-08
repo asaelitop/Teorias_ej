@@ -1,0 +1,67 @@
+digraph P14_5_4_Ejemplo_4_4_Insertar_Desordenado_Flowchart {
+    // Configuracion general del grafo
+    rankdir=TB;
+    node [fontname="Helvetica", fontsize=10];
+    edge [fontname="Helvetica", fontsize=9];
+
+    // --- NODOS ---
+
+    // Inicio/Fin
+    node [shape=ellipse, style=filled, fillcolor=lightgrey];
+    start [label="INICIO"];
+    end [label="FIN"];
+
+    // Procesos
+    node [shape=box, style=filled, fillcolor=lightblue];
+    declare_vars [label="DECLARAR\nScanner sc, int[] a = new int[5],\nint n = 0, char continuar = 's'"];
+    insert_element [label="a[n] = y\nn++"];
+    print_array_loop_init [label="i = 0"];
+    print_array_inc [label="i++"];
+    close_scanner [label="Cerrar Scanner"];
+
+    // Entrada de datos
+    node [shape=parallelogram, style=filled, fillcolor=lightgoldenrod1];
+    read_y [label="LEER y"];
+    read_continue [label="LEER continuar"];
+
+    // Salida de datos
+    node [shape=note, style=filled, fillcolor=lemonchiffon];
+    prompt_y [label="IMPRIMIR 'Ingrese el elemento a insertar'"];
+    print_success [label="IMPRIMIR 'Elemento insertado correctamente'"];
+    print_current_header [label="IMPRIMIR 'Arreglo actual:'"];
+    print_element [label="IMPRIMIR a[i]"];
+    prompt_continue [label="IMPRIMIR '\n¿Desea insertar otro elemento? (s/n)'"];
+    print_full [label="IMPRIMIR 'No hay mas espacio para insertar'"];
+    print_final [label="IMPRIMIR 'Proceso finalizado'"];
+
+    // Decisiones y Bucles
+    node [shape=diamond, style=filled, fillcolor=khaki, width=2, height=1.2];
+    while_condition [label="n < 5 &&\n(continuar == 's' || continuar == 'S')"];
+    if_space_left [label="n < 5"];
+    print_array_loop_cond [label="i < n"];
+    if_full_after_loop [label="n >= 5"];
+
+    // --- CONEXIONES ---
+    start -> declare_vars -> while_condition;
+
+    while_condition -> prompt_y [label="Si"];
+    prompt_y -> read_y -> insert_element -> print_success -> print_current_header -> print_array_loop_init -> print_array_loop_cond;
+
+    print_array_loop_cond -> print_element [label="Si"];
+    print_element -> print_array_inc -> print_array_loop_cond;
+    
+    print_array_loop_cond -> if_space_left [label="No"];
+
+    if_space_left -> prompt_continue [label="Si"];
+    prompt_continue -> read_continue -> while_condition;
+
+    if_space_left -> if_full_after_loop [label="No"];
+    
+    while_condition -> if_full_after_loop [label="No"];
+    
+    if_full_after_loop -> print_full [label="Si"];
+    print_full -> print_final;
+    if_full_after_loop -> print_final [label="No"];
+    
+    print_final -> close_scanner -> end;
+}

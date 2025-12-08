@@ -1,0 +1,56 @@
+digraph P14_9_ps_3_6_Flowchart {
+    // Configuracion general del grafo
+    rankdir=TB;
+    node [fontname="Helvetica", fontsize=10];
+    edge [fontname="Helvetica", fontsize=9];
+
+    // Definicion de nodos
+    start [label="INICIO", shape=ellipse, style=filled, fillcolor=lightgrey];
+    end [label="FIN", shape=ellipse, style=filled, fillcolor=lightgrey];
+
+    declare_vars [label="DECLARAR\nScanner scanner, int n", shape=box, style=filled, fillcolor=lightblue];
+    prompt_n [label="IMPRIMIR 'Introduce el numero de empleados:'", shape=document, style=filled, fillcolor=lightgoldenrod1];
+    read_n [label="LEER n", shape=parallelogram, style=filled, fillcolor=lightgoldenrod1];
+    
+    decision_n [label="n > 0", shape=diamond, style=filled, fillcolor=khaki];
+    
+    print_no_empleados [label="IMPRIMIR 'No hay empleados para procesar.'", shape=document, style=filled, fillcolor=lightgoldenrod1];
+    print_header [label="IMPRIMIR '--- Introduce los sueldos ---'", shape=document, style=filled, fillcolor=lightgoldenrod1];
+
+    // Nodos del bucle
+    loop_init [label="i = 0", shape=box, style=filled, fillcolor=lightblue];
+    loop_cond [label="i < n", shape=diamond, style=filled, fillcolor=khaki];
+    prompt_sueldo [label="IMPRIMIR 'Sueldo del empleado #[i+1]:'", shape=document, style=filled, fillcolor=lightgoldenrod1];
+    read_sueldo [label="LEER sueldo", shape=parallelogram, style=filled, fillcolor=lightgoldenrod1];
+    decision_aumento [label="sueldo < 800", shape=diamond, style=filled, fillcolor=khaki];
+    calc_aumento [label="sueldo = sueldo * 1.15", shape=box, style=filled, fillcolor=lightblue];
+    print_nuevo_sueldo [label="IMPRIMIR '-> Nuevo sueldo: $' + sueldo", shape=document, style=filled, fillcolor=lightgoldenrod1];
+    loop_inc [label="i++", shape=box, style=filled, fillcolor=lightblue];
+
+    close_scanner [label="Cerrar Scanner", shape=box, style=filled, fillcolor=lightblue];
+
+    // Conexiones (flujo)
+    start -> declare_vars;
+    declare_vars -> prompt_n;
+    prompt_n -> read_n;
+    read_n -> decision_n;
+
+    decision_n -> print_header [label="Si"];
+    print_header -> loop_init;
+    loop_init -> loop_cond;
+
+    loop_cond -> prompt_sueldo [label="Si"];
+    prompt_sueldo -> read_sueldo;
+    read_sueldo -> decision_aumento;
+    decision_aumento -> calc_aumento [label="Si"];
+    calc_aumento -> print_nuevo_sueldo;
+    decision_aumento -> print_nuevo_sueldo [label="No"];
+    print_nuevo_sueldo -> loop_inc;
+    loop_inc -> loop_cond;
+
+    loop_cond -> close_scanner [label="No"];
+    decision_n -> print_no_empleados [label="No"];
+    print_no_empleados -> close_scanner;
+    
+    close_scanner -> end;
+}

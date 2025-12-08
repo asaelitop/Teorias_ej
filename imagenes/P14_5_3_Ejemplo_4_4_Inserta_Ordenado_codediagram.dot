@@ -1,0 +1,88 @@
+digraph P14_5_3_Ejemplo_4_4_Inserta_Ordenado_Flowchart {
+    // Configuracion general del grafo
+    rankdir=TB;
+    node [fontname="Helvetica", fontsize=10];
+    edge [fontname="Helvetica", fontsize=9];
+
+    // --- NODOS ---
+
+    // Inicio/Fin
+    node [shape=ellipse, style=filled, fillcolor=lightgrey];
+    start [label="INICIO"];
+    end [label="FIN"];
+
+    // Procesos (Declaraciones y asignaciones)
+    node [shape=box, style=filled, fillcolor=lightblue];
+    declare_vars [label="DECLARAR\nScanner sc, int[] a, int n"];
+    declare_pos [label="int pos = 0"];
+    inc_pos [label="pos++"];
+    shift_elements [label="a[i] = a[i-1]"];
+    insert_x [label="a[pos] = x"];
+    inc_n [label="n++"];
+    close_scanner [label="Cerrar Scanner"];
+    
+    // Entrada de datos
+    node [shape=parallelogram, style=filled, fillcolor=lightgoldenrod1];
+    read_n [label="LEER n"];
+    read_elements [label="LEER a[i]"];
+    read_x [label="LEER x"];
+
+    // Salida de datos
+    node [shape=note, style=filled, fillcolor=lemonchiffon];
+    prompt_n [label="IMPRIMIR 'Ingrese cantidad de elementos'"];
+    print_full [label="IMPRIMIR 'El arreglo ya esta lleno'"];
+    prompt_elements [label="IMPRIMIR 'Ingrese los elementos ordenados'"];
+    prompt_x [label="IMPRIMIR 'Ingrese el elemento a insertar'"];
+    print_exists [label="IMPRIMIR 'No se pudo insertar (ya existe)'"];
+    print_array_no_change [label="IMPRIMIR a[i]"];
+    print_success [label="IMPRIMIR 'Elemento insertado exitosamente'"];
+    print_result_header [label="IMPRIMIR 'Arreglo resultante:'"];
+    print_final_array [label="IMPRIMIR a[i]"];
+
+    // Decisiones y Bucles
+    node [shape=diamond, style=filled, fillcolor=khaki, width=1.8, height=1.2];
+    if_full [label="n >= 100"];
+    loop_read_elements [label="i < n"];
+    loop_find_pos [label="pos < n &&\na[pos] < x"];
+    if_exists [label="pos < n &&\na[pos] == x"];
+    loop_shift [label="i > pos"];
+    loop_print_no_change [label="i < n"];
+    loop_print_final [label="i < n"];
+
+    // --- CONEXIONES ---
+    start -> declare_vars -> prompt_n -> read_n -> if_full;
+
+    if_full -> print_full [label="Si"];
+    print_full -> close_scanner;
+    
+    if_full -> prompt_elements [label="No"];
+    prompt_elements -> loop_read_elements;
+
+    loop_read_elements -> read_elements [label="Si"];
+    read_elements -> loop_read_elements;
+    loop_read_elements -> prompt_x [label="No"];
+    
+    prompt_x -> read_x -> declare_pos -> loop_find_pos;
+
+    loop_find_pos -> inc_pos [label="Si"];
+    inc_pos -> loop_find_pos;
+    loop_find_pos -> if_exists [label="No"];
+
+    if_exists -> print_exists [label="Si"];
+    print_exists -> loop_print_no_change;
+    loop_print_no_change -> print_array_no_change [label="Si"];
+    print_array_no_change -> loop_print_no_change;
+    loop_print_no_change -> close_scanner [label="No"];
+
+    if_exists -> loop_shift [label="No"];
+    loop_shift -> shift_elements [label="Si"];
+    shift_elements -> loop_shift;
+    loop_shift -> insert_x [label="No"];
+    
+    insert_x -> inc_n -> print_success -> print_result_header -> loop_print_final;
+    loop_print_final -> print_final_array [label="Si"];
+    print_final_array -> loop_print_final;
+    loop_print_final -> close_scanner [label="No"];
+    
+    close_scanner -> end;
+}

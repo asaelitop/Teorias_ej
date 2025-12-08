@@ -1,0 +1,59 @@
+digraph P14_4_pro_3_7_Flowchart {
+    rankdir=TB;
+    node [fontname="Helvetica", fontsize=10];
+    edge [fontname="Helvetica", fontsize=9];
+
+    /* Inicio / Fin */
+    start [shape=oval, style=filled, fillcolor=lightgrey, label="INICIO"];
+    end [shape=oval, style=filled, fillcolor=lightgrey, label="FIN"];
+
+    /* Procesos */
+    declare_vars [shape=box, style=filled, fillcolor=lightblue, label="DECLARAR:\nventasChicas, ventasMedianas, ventasGrandes (int)\ncantidadVentas (int)"];
+    init_loop [shape=hexagon, style=filled, fillcolor=lightblue, label="FOR (i = 0; i < cantidadVentas; i++)"];
+    increment_chicas [shape=box, style=filled, fillcolor=lightblue, label="ventasChicas++"];
+    increment_medianas [shape=box, style=filled, fillcolor=lightblue, label="ventasMedianas++"];
+    increment_grandes [shape=box, style=filled, fillcolor=lightblue, label="ventasGrandes++"];
+    close_scanner [shape=box, style=filled, fillcolor=lightblue, label="Cerrar Scanner"];
+
+    /* Entrada */
+    prompt_cantidad [shape=parallelogram, style=filled, fillcolor=lightgoldenrod1, label="IMPRIMIR \"Introduce la cantidad de ventas a procesar: \""];
+    read_cantidad [shape=parallelogram, style=filled, fillcolor=lightgoldenrod1, label="LEER cantidadVentas"];
+    prompt_monto [shape=parallelogram, style=filled, fillcolor=lightgoldenrod1, label="IMPRIMIR \"Introduce el monto de la venta #[i+1]: \""];
+    read_monto [shape=parallelogram, style=filled, fillcolor=lightgoldenrod1, label="LEER monto"];
+
+    /* Salida / Resumen */
+    print_resumen [shape=parallelogram, style=filled, fillcolor=lightcyan, label="IMPRIMIR Resumen de ventas:\n- Chicas: [ventasChicas]\n- Medianas: [ventasMedianas]\n- Grandes: [ventasGrandes]"];
+
+    /* Decisiones */
+    decision_chica [shape=diamond, style=filled, fillcolor=khaki, label="monto <= 200"];
+    decision_grande [shape=diamond, style=filled, fillcolor=khaki, label="monto >= 400"];
+
+    /* Flujo */
+    start -> declare_vars -> prompt_cantidad -> read_cantidad -> init_loop;
+    init_loop -> prompt_monto -> read_monto -> decision_chica;
+
+    decision_chica -> increment_chicas [label="Sí"];
+    decision_chica -> decision_grande [label="No"];
+    decision_grande -> increment_grandes [label="Sí"];
+    decision_grande -> increment_medianas [label="No"];
+
+    increment_chicas -> init_loop;
+    increment_medianas -> init_loop;
+    increment_grandes -> init_loop;
+
+    init_loop -> print_resumen [label="Fin del bucle"];
+    print_resumen -> close_scanner -> end;
+}
+    -> -> init_loop;
+    increment_grandes -> init_loop;
+    [label="Si"]; -> init_loop;
+    decision_grande -> init_loop;
+    -> -> init_loop;
+    increment_medianas -> init_loop;
+    [label="No"]; -> init_loop;
+    {increment_chicas -> init_loop;
+    increment_medianas -> init_loop;
+    increment_grandes -> init_loop; // Fin del bucle
+    init_loop -> print_resumen [label="Fin del bucle"];
+    print_resumen -> close_scanner -> end;
+}

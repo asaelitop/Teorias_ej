@@ -1,0 +1,95 @@
+digraph P14_5_1_Ejemplo_4_4_Elimina_Desordenado_Flowchart {
+    // Configuracion general del grafo
+    rankdir=TB;
+    node [fontname="Helvetica", fontsize=10];
+    edge [fontname="Helvetica", fontsize=9];
+
+    // Definicion de estilos de nodos
+    node [shape=ellipse, style=filled, fillcolor=lightgrey]; // Inicio/Fin
+    start [label="INICIO"];
+    end [label="FIN"];
+
+    node [shape=box, style=filled, fillcolor=lightblue]; // Proceso
+    declare_vars [label="DECLARAR:\nScanner sc, int[] a, int n, int x"];
+    read_elements_loop_init [label="int i = 0"];
+    read_elements_loop_inc [label="i++"];
+    read_element [label="a[i] = sc.nextInt()"];
+    
+    find_vars_init [label="int i = 0\nboolean encontrado = false"];
+    find_loop_inc [label="i++"];
+    set_encontrado_true [label="encontrado = true"];
+
+    decrement_n [label="n--"];
+    shift_loop_init [label="int k = i"];
+    shift_loop_inc [label="k++"];
+    shift_proc [label="a[k] = a[k + 1]"];
+    
+    print_loop_init [label="int k = 0"];
+    print_loop_inc [label="k++"];
+    
+    close_scanner [label="Cerrar Scanner"];
+
+    node [shape=parallelogram, style=filled, fillcolor=lightgoldenrod1]; // Entrada/Salida
+    prompt_n [label="IMPRIMIR \"Ingrese el tamano del arreglo (N):\""];
+    read_n [label="LEER n"];
+    prompt_elements [label="IMPRIMIR \"Ingrese los elementos del arreglo:\""];
+    prompt_x [label="IMPRIMIR \"Ingrese el elemento a eliminar (X):\""];
+    read_x [label="LEER x"];
+    print_success [label="IMPRIMIR \"Elemento eliminado.\nArreglo resultante:\""];
+    print_failure [label="IMPRIMIR \"Elemento no encontrado.\nEl arreglo no ha cambiado:\""];
+    print_element [label="IMPRIMIR a[k] + \" \""];
+    print_newline [label="IMPRIMIR Salto de linea"];
+
+    node [shape=diamond, style=filled, fillcolor=khaki]; // Decision
+    read_elements_loop_cond [label="i < n"];
+    find_loop_cond [label="i < n &&\n!encontrado"];
+    find_check [label="a[i] == x"];
+    decision_encontrado [label="¿encontrado?"];
+    shift_loop_cond [label="k < n"];
+    print_loop_cond [label="k < n"];
+
+    // Conexiones (flujo)
+    start -> declare_vars -> prompt_n -> read_n -> prompt_elements;
+    
+    // Bucle para leer elementos
+    prompt_elements -> read_elements_loop_init;
+    read_elements_loop_init -> read_elements_loop_cond;
+    read_elements_loop_cond -> read_element [label="Si"];
+    read_element -> read_elements_loop_inc -> read_elements_loop_cond;
+    
+    // Pedir X y buscar
+    read_elements_loop_cond -> prompt_x [label="No"];
+    prompt_x -> read_x -> find_vars_init;
+    
+    // Bucle de busqueda
+    find_vars_init -> find_loop_cond;
+    find_loop_cond -> find_check [label="Verdadero"];
+    find_check -> set_encontrado_true [label="Si"];
+    find_check -> find_loop_inc [label="No"];
+    find_loop_inc -> find_loop_cond;
+    set_encontrado_true -> find_loop_cond;
+
+    // Decision despues de la busqueda
+    find_loop_cond -> decision_encontrado [label="Falso"];
+    decision_encontrado -> decrement_n [label="Si"];
+    decision_encontrado -> print_failure [label="No"];
+
+    // Rama "encontrado"
+    decrement_n -> print_success -> shift_loop_init;
+    shift_loop_init -> shift_loop_cond;
+    shift_loop_cond -> shift_proc [label="Si"];
+    shift_proc -> shift_loop_inc -> shift_loop_cond;
+    shift_loop_cond -> print_loop_init [label="No"];
+
+    // Rama "no encontrado"
+    print_failure -> print_loop_init;
+
+    // Bucle de impresion final
+    print_loop_init -> print_loop_cond;
+    print_loop_cond -> print_element [label="Si"];
+    print_element -> print_loop_inc -> print_loop_cond;
+    
+    // Fin
+    print_loop_cond -> print_newline [label="No"];
+    print_newline -> close_scanner -> end;
+}

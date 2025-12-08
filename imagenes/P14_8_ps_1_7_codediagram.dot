@@ -1,0 +1,44 @@
+digraph P14_8_ps_1_7_Flowchart {
+    // Configuracion general del grafo
+    rankdir=TB;
+    node [fontname="Helvetica", fontsize=10];
+    edge [fontname="Helvetica", fontsize=9];
+
+    // Definicion de nodos
+    start [label="INICIO", shape=ellipse, style=filled, fillcolor=lightgrey];
+    end [label="FIN", shape=ellipse, style=filled, fillcolor=lightgrey];
+
+    declare_vars [label="DECLARAR\nprecioVehiculo (double), enganche (double),\nresto (double), mensualidad (double)", shape=box, style=filled, fillcolor=lightblue];
+    
+    prompt_precio [label="IMPRIMIR 'Introduce el precio del vehiculo:'", shape=document, style=filled, fillcolor=lightgoldenrod1];
+    read_precio [label="LEER precioVehiculo", shape=parallelogram, style=filled, fillcolor=lightgoldenrod1];
+
+    decision_precio [label="precioVehiculo > 0", shape=diamond, style=filled, fillcolor=khaki];
+
+    calc_pagos [label="enganche = precioVehiculo * 0.35\nresto = precioVehiculo - enganche\nmensualidad = resto / 36.0", shape=box, style=filled, fillcolor=lightblue];
+    
+    print_plan_header [label="IMPRIMIR '--- Plan de Pagos ---'", shape=document, style=filled, fillcolor=lightgoldenrod1];
+    print_enganche [label="IMPRIMIR 'Enganche (35%%): ' + enganche", shape=document, style=filled, fillcolor=lightgoldenrod1];
+    print_mensualidad [label="IMPRIMIR 'Pago mensual (36 meses): ' + mensualidad", shape=document, style=filled, fillcolor=lightgoldenrod1];
+
+    print_error [label="IMPRIMIR 'El precio del vehiculo debe ser mayor a cero.'", shape=document, style=filled, fillcolor=lightgoldenrod1];
+    
+    close_scanner [label="Cerrar Scanner", shape=box, style=filled, fillcolor=lightblue];
+
+    // Conexiones (flujo)
+    start -> declare_vars;
+    declare_vars -> prompt_precio;
+    prompt_precio -> read_precio;
+    read_precio -> decision_precio;
+    
+    decision_precio -> calc_pagos [label="Si"];
+    calc_pagos -> print_plan_header;
+    print_plan_header -> print_enganche;
+    print_enganche -> print_mensualidad;
+    print_mensualidad -> close_scanner;
+    
+    decision_precio -> print_error [label="No"];
+    print_error -> close_scanner;
+
+    close_scanner -> end;
+}

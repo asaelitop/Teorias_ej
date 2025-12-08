@@ -1,0 +1,45 @@
+digraph P14_7_ej_5_1_Flowchart {
+    // Configuracion general del grafo
+    rankdir=TB;
+    node [fontname="Helvetica", fontsize=10];
+    edge [fontname="Helvetica", fontsize=9];
+
+    // Definicion de nodos
+    start [label="INICIO", shape=ellipse, style=filled, fillcolor="#B0E0E6"];
+    end [label="FIN", shape=ellipse, style=filled, fillcolor="#B0E0E6"];
+
+    declare_vars [label="DECLARAR:\nScanner sc\nString nombre, direccion, carrera\nint matricula", shape=box, style=filled, fillcolor="#FFFACD"];
+
+    prompt_nombre [label="IMPRIMIR\n\"Introduce el nombre del alumno: \"", shape=document, style=filled, fillcolor="#D8BFD8"];
+    read_nombre [label="LEER nombre", shape=parallelogram, style=filled, fillcolor="#98FB98"];
+    
+    prompt_direccion [label="IMPRIMIR\n\"Introduce la direccion: \"", shape=document, style=filled, fillcolor="#D8BFD8"];
+    read_direccion [label="LEER direccion", shape=parallelogram, style=filled, fillcolor="#98FB98"];
+
+    prompt_carrera [label="IMPRIMIR\n\"Introduce la carrera: \"", shape=document, style=filled, fillcolor="#D8BFD8"];
+    read_carrera [label="LEER carrera", shape=parallelogram, style=filled, fillcolor="#98FB98"];
+
+    prompt_matricula [label="IMPRIMIR\n\"Introduce la matricula: \"", shape=document, style=filled, fillcolor="#D8BFD8"];
+    read_matricula [label="LEER matricula", shape=parallelogram, style=filled, fillcolor="#98FB98"];
+    
+    create_object [label="Crear objeto 'alumno'\ncon los datos leidos", shape=box, style=filled, fillcolor="#FFFACD"];
+    
+    print_reporte [label="IMPRIMIR REPORTE\n\"--- Datos del Alumno Registrado ---\"\n+ alumno.getNombre()\n+ alumno.getMatricula()\n+ alumno.getDireccion()\n+ alumno.getCarrera()", shape=document, style=filled, fillcolor="#D8BFD8"];
+    
+    close_scanner [label="Cerrar Scanner", shape=box, style=filled, fillcolor="#FFFACD"];
+
+    // Conexiones (flujo)
+    start -> declare_vars;
+    declare_vars -> prompt_nombre;
+    prompt_nombre -> read_nombre;
+    read_nombre -> prompt_direccion;
+    prompt_direccion -> read_direccion;
+    read_direccion -> prompt_carrera;
+    prompt_carrera -> read_carrera;
+    read_carrera -> prompt_matricula;
+    prompt_matricula -> read_matricula;
+    read_matricula -> create_object;
+    create_object -> print_reporte;
+    print_reporte -> close_scanner;
+    close_scanner -> end;
+}

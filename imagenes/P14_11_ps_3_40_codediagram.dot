@@ -1,0 +1,92 @@
+digraph P14_11_ps_3_40_Flowchart {
+    // Configuracion general
+    rankdir=TB;
+    node [fontname="Helvetica", fontsize=10];
+    edge [fontname="Helvetica", fontsize=9];
+
+    // Nodos
+    start [label="INICIO", shape=ellipse, style=filled, fillcolor=lightgrey];
+    end [label="FIN", shape=ellipse, style=filled, fillcolor=lightgrey];
+
+    declare_vars [label="DECLARAR:\nScanner, Arreglos para nombres, condElectrica, condTermica, int n=0", shape=box, style=filled, fillcolor=lightblue];
+    prompt_init [label="IMPRIMIR\n'--- Ingrese los datos... ---'", shape=parallelogram, style=filled, fillcolor=lightgoldenrod1];
+    
+    // Bucle de entrada de datos
+    prompt_nombre [label="IMPRIMIR\n\"Ingrese nombre (o 'NN' para finalizar):\"", shape=parallelogram, style=filled, fillcolor=lightgoldenrod1];
+    read_nombre [label="LEER nombreElemento", shape=parallelogram, style=filled, fillcolor=lightgoldenrod1];
+    check_nombre [label="nombreElemento != 'NN'", shape=diamond, style=filled, fillcolor=khaki];
+    prompt_cond_elec [label="IMPRIMIR 'Ingrese conductividad electrica:'", shape=parallelogram, style=filled, fillcolor=lightgoldenrod1];
+    read_cond_elec [label="LEER condElectrica[n]", shape=parallelogram, style=filled, fillcolor=lightgoldenrod1];
+    prompt_cond_term [label="IMPRIMIR 'Ingrese conductividad termica:'", shape=parallelogram, style=filled, fillcolor=lightgoldenrod1];
+    read_cond_term [label="LEER condTermica[n]", shape=parallelogram, style=filled, fillcolor=lightgoldenrod1];
+    store_data [label="nombres[n] = nombreElemento\nn++", shape=box, style=filled, fillcolor=lightblue];
+    
+    // Analisis de datos
+    check_n_gt_0 [label="n > 0", shape=diamond, style=filled, fillcolor=khaki];
+    init_minmax [label="Inicializar min/max con valores del 1er elemento:\nmaxElec, minElec, maxTerm, minTerm y sus nombres", shape=box, style=filled, fillcolor=lightblue];
+    
+    // Bucle de analisis
+    loop_analisis_init [label="i = 1", shape=box, style=filled, fillcolor=lightblue];
+    loop_analisis_cond [label="i < n", shape=diamond, style=filled, fillcolor=khaki];
+    
+    // -- Comparaciones Electricidad
+    check_max_elec [label="condElectrica[i] > maxElec", shape=diamond, style=filled, fillcolor=khaki];
+    update_max_elec [label="maxElec = condElectrica[i]\nnombreMaxElec = nombres[i]", shape=box, style=filled, fillcolor=lightblue];
+    check_min_elec [label="condElectrica[i] < minElec", shape=diamond, style=filled, fillcolor=khaki];
+    update_min_elec [label="minElec = condElectrica[i]\nnombreMinElec = nombres[i]", shape=box, style=filled, fillcolor=lightblue];
+    
+    // -- Comparaciones Termica
+    check_max_term [label="condTermica[i] > maxTerm", shape=diamond, style=filled, fillcolor=khaki];
+    update_max_term [label="maxTerm = condTermica[i]\nnombreMaxTerm = nombres[i]", shape=box, style=filled, fillcolor=lightblue];
+    check_min_term [label="condTermica[i] < minTerm", shape=diamond, style=filled, fillcolor=khaki];
+    update_min_term [label="minTerm = condTermica[i]\nnombreMinTerm = nombres[i]", shape=box, style=filled, fillcolor=lightblue];
+    
+    increment_i [label="i++", shape=box, style=filled, fillcolor=lightblue];
+    
+    // Salida
+    print_reporte [label="IMPRIMIR Reporte Final:\n- Mejor/Peor Electrico\n- Mejor/Peor Termico", shape=parallelogram, style=filled, fillcolor=lightgoldenrod1];
+    print_no_data [label="IMPRIMIR\n\"No se ingresaron elementos.\"", shape=parallelogram, style=filled, fillcolor=lightgoldenrod1];
+    close_scanner [label="Cerrar Scanner", shape=box, style=filled, fillcolor=lightblue];
+
+    // Conexiones
+    start -> declare_vars -> prompt_init -> prompt_nombre;
+    
+    // Flujo del bucle do-while
+    prompt_nombre -> read_nombre -> check_nombre;
+    check_nombre -> prompt_cond_elec [label="Si"];
+    prompt_cond_elec -> read_cond_elec -> prompt_cond_term -> read_cond_term -> store_data -> prompt_nombre;
+    
+    // Salida del bucle do-while y bifurcacion principal
+    check_nombre -> check_n_gt_0 [label="No"];
+    
+    check_n_gt_0 -> init_minmax [label="Si"];
+    check_n_gt_0 -> print_no_data [label="No"];
+    
+    // Flujo del bucle for
+    init_minmax -> loop_analisis_init -> loop_analisis_cond;
+    loop_analisis_cond -> check_max_elec [label="Si"];
+    
+    check_max_elec -> update_max_elec [label="Si"];
+    update_max_elec -> check_min_elec;
+    check_max_elec -> check_min_elec [label="No"];
+    
+    check_min_elec -> update_min_elec [label="Si"];
+    update_min_elec -> check_max_term;
+    check_min_elec -> check_max_term [label="No"];
+
+    check_max_term -> update_max_term [label="Si"];
+    update_max_term -> check_min_term;
+    check_max_term -> check_min_term [label="No"];
+
+    check_min_term -> update_min_term [label="Si"];
+    update_min_term -> increment_i;
+    check_min_term -> increment_i [label="No"];
+    
+    increment_i -> loop_analisis_cond;
+    
+    // Fin del bucle for y finalizacion
+    loop_analisis_cond -> print_reporte [label="No"];
+    print_reporte -> close_scanner;
+    print_no_data -> close_scanner;
+    close_scanner -> end;
+}
